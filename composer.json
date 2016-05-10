@@ -4,11 +4,11 @@
     "description": "Copy nodes from one dimension to another to create a base for translating for example.",
     "license": "MIT",
     "require": {
-        "typo3/neos": "~2.0"
+        "typo3/neos": "~2.1"
     },
     "autoload": {
-        "psr-0": {
-            "Flownative\\NodeDuplicator": "Classes"
+        "psr-4": {
+            "Flownative\\NodeDuplicator\\": "Classes"
         }
     }
 }
