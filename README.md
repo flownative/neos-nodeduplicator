@@ -2,7 +2,15 @@
 
 Copy nodes from one dimension to another to create a base for translating for example or to change your dimensions around.
 
-Usage:
+## Installation
+
+Install the package via composer:
+
+```
+composer require flownative/nodeduplicator
+```
+
+## Usage
 
 ```
 ./flow node:adopt <rootNodeByPathOrIdentifier> <dimensionStringToCopyFrom> <dimensionStringToCopyTo> [<workspaceName (default to "live")>]
@@ -11,7 +19,7 @@ Usage:
 An actual example for the demo site is:
 
 ```
-./flow node:adopt "/sites/neosdemotypo3org" "language=en_US" "language=dk"
+./flow node:adopt "/sites/neosdemo" "language=en_US" "language=dk"
 ```
 
 This would start with the homepage of the demo site, use the dimension values `language => en_US` as base for the copy
