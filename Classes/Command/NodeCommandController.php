@@ -1,13 +1,13 @@
 <?php
 namespace Flownative\NodeDuplicator\Command;
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Cli\CommandController;
-use TYPO3\Flow\Validation\Validator\UuidValidator;
-use TYPO3\Neos\Domain\Service\ContentContextFactory;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
-use TYPO3\TYPO3CR\Domain\Service\Context;
-use TYPO3\TYPO3CR\Domain\Utility\NodePaths;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Cli\CommandController;
+use Neos\Flow\Validation\Validator\UuidValidator;
+use Neos\Neos\Domain\Service\ContentContextFactory;
+use Neos\TYPO3CR\Domain\Model\NodeInterface;
+use Neos\TYPO3CR\Domain\Service\Context;
+use Neos\TYPO3CR\Domain\Utility\NodePaths;
 
 /**
  *
