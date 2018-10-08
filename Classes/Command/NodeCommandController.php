@@ -5,9 +5,9 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Validation\Validator\UuidValidator;
 use Neos\Neos\Domain\Service\ContentContextFactory;
-use Neos\TYPO3CR\Domain\Model\NodeInterface;
-use Neos\TYPO3CR\Domain\Service\Context;
-use Neos\TYPO3CR\Domain\Utility\NodePaths;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\ContentRepository\Domain\Service\Context;
+use Neos\ContentRepository\Domain\Utility\NodePaths;
 
 /**
  *
