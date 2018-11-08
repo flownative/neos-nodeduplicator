@@ -4,7 +4,7 @@
     "description": "Copy nodes from one dimension to another to create a base for translating for example.",
     "license": "MIT",
     "require": {
-        "typo3/neos": "^3.0.0"
+        "neos/neos": "^3.0"
     },
     "autoload": {
         "psr-4": {
