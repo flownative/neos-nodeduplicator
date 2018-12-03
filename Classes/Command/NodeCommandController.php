@@ -83,8 +83,12 @@ class NodeCommandController extends CommandController
      */
     protected function adoptToTargetContext(NodeInterface $startingPointNode, Context $targetContext): void
     {
-        $targetContext->adoptNode($startingPointNode);
-        $this->outputLine(sprintf('Adopted Node "%s" to new dimensions.', $startingPointNode->getPath()));
+        try {
+            $targetContext->adoptNode($startingPointNode);
+            $this->outputLine(sprintf('%s - adopted to new dimensions.', $startingPointNode->getPath()));
+        } catch (\Exception $exception) {
+            $this->outputLine(sprintf('<error>%s - exception when adopting to new dimensions.</error>', $startingPointNode->getPath()));
+        }
         foreach ($startingPointNode->getChildNodes() as $childNode) {
             $this->adoptToTargetContext($childNode, $targetContext);
         }
