@@ -67,7 +67,10 @@ class NodeCommandController extends CommandController
     {
         return $this->contextFactory->create([
             'workspaceName' => $workspaceName,
-            'dimensions' => $dimensions
+            'dimensions' => $dimensions,
+            'invisibleContentShown' => true,
+            'removedContentShown' => true,
+            'inaccessibleContentShown' => true
         ]);
     }
 
