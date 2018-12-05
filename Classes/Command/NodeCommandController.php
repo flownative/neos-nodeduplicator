@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flownative\NodeDuplicator\Command;
 
 use Neos\ContentRepository\Domain\Model\NodeInterface;
@@ -52,7 +55,7 @@ class NodeCommandController extends CommandController
 
         $this->adoptToTargetContext($startingPointNode, $targetContext);
 
-        $this->outputLine('');
+        $this->outputLine();
         $this->outputLine('All nodes have been adopted. Done...');
     }
 
