@@ -4,6 +4,7 @@
     "description": "Copy nodes from one dimension to another to create a base for translating for example.",
     "license": "MIT",
     "require": {
+        "php": "^7.1",
         "neos/neos": "^3.0 || ^4.0"
     },
     "autoload": {
