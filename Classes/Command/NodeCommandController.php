@@ -33,8 +33,10 @@ class NodeCommandController extends CommandController
      * @param string $fromDimensions
      * @param string $toDimensions
      * @param string $workspace A workspace name, defaults to "live"
+     * @param string $excludedPathes List of node pathes that should not be adopted
+     * @throws \Neos\Flow\Cli\Exception\StopCommandException
      */
-    public function adoptCommand(string $startingPoint, string $fromDimensions, string $toDimensions, string $workspace = 'live'): void
+    public function adoptCommand(string $startingPoint, string $fromDimensions, string $toDimensions, string $workspace = 'live', string $excludedPathes = ''): void
     {
         $fromDimensionArray = NodePaths::parseDimensionValueStringToArray($fromDimensions);
         $toDimensionArray = NodePaths::parseDimensionValueStringToArray($toDimensions);
@@ -53,7 +55,7 @@ class NodeCommandController extends CommandController
             $this->quit(1);
         }
 
-        $this->adoptToTargetContext($startingPointNode, $targetContext);
+        $this->adoptToTargetContext($startingPointNode, $targetContext, explode(',', $excludedPathes));
 
         $this->outputLine();
         $this->outputLine('All nodes have been adopted. Done...');
@@ -82,18 +84,25 @@ class NodeCommandController extends CommandController
      *
      * @param NodeInterface $startingPointNode
      * @param Context $targetContext
+     * @param array $excludedPathes List of node pathes that should not be excluded
      * @return void
      */
-    protected function adoptToTargetContext(NodeInterface $startingPointNode, Context $targetContext): void
+    protected function adoptToTargetContext(NodeInterface $startingPointNode, Context $targetContext, array $excludedPathes = []): void
     {
+        $startingPointNodePath = $startingPointNode->findNodePath()->jsonSerialize();
+        $skipAdoption = in_array($startingPointNodePath, $excludedPathes, true);
         try {
-            $targetContext->adoptNode($startingPointNode);
-            $this->outputLine(sprintf('%s - adopted to new dimensions.', $startingPointNode->getPath()));
+            if (!$skipAdoption) {
+                $targetContext->adoptNode($startingPointNode);
+                $this->outputLine(sprintf('%s - adopted to new dimensions.', $startingPointNode->getPath()));
+            }
         } catch (\Exception $exception) {
             $this->outputLine(sprintf('<error>%s - could not adopt to new dimensions:</error> %s', $startingPointNode->getPath(), $exception->getMessage()));
         }
-        foreach ($startingPointNode->getChildNodes() as $childNode) {
-            $this->adoptToTargetContext($childNode, $targetContext);
+        if (!$skipAdoption) {
+            foreach ($startingPointNode->getChildNodes() as $childNode) {
+                $this->adoptToTargetContext($childNode, $targetContext, $excludedPathes);
+            }
         }
     }
 }
